@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
@@ -58,6 +59,7 @@ public class Kart2D {
 				final Graphics2D g2 = (Graphics2D) g;
 				g2.setColor(Color.WHITE);
 				g2.fillRect(0, 0, getWidth(), getHeight());
+				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				g2.translate(0, this.getHeight());
 				g2.scale(1, -1);
 				g2.translate(getWidth() / 2, getHeight() / 4);
@@ -80,7 +82,8 @@ public class Kart2D {
 				g2.fillPolygon(new int[] { 0, 80, 80, 0 }, new int[] { -4, -2, 2, 4 }, 4);
 			}
 
-			private void draw(final Player player, final Stage stage, final Graphics2D g2, final double x, final double y, final double direction) {
+			private void draw(final Player player, final Stage stage, final Graphics2D g2, final double x,
+					final double y, final double direction) {
 				g2.setColor(new Color(240, 240, 240));
 				for (final Rail rail : stage.getRails()) {
 					g2.fill(Util.getShape(rail, true));
