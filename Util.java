@@ -52,16 +52,17 @@ public class Util {
 
 	/**
 	 * @param rail レール
-	 * @return レールの塗りつぶし
+	 * @param isFill 塗りつぶし部かどうか
+	 * @return レールの形
 	 */
-	public static Shape getFill(final Rail rail) {
+	public static Shape getShape(final Rail rail, final boolean isFill) {
 		final AffineTransform transform = new AffineTransform();
 		transform.translate(rail.location.getX(), rail.location.getY());
 		transform.rotate(rail.angle);
 		if (rail.isReverse) {
 			transform.scale(1, -1);
 		}
-		return transform.createTransformedShape(rail.type.getFill());
+		return transform.createTransformedShape(isFill ? rail.type.getFill() : rail.type.getShape());
 	}
 
 	/**

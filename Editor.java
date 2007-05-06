@@ -97,7 +97,7 @@ public class Editor {
 
 	/**
 	 * メインメソッドです。
-	 * @param args
+	 * @param args コマンドライン引数
 	 * @throws UnsupportedLookAndFeelException 
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
@@ -328,7 +328,7 @@ public class Editor {
 					}
 					if (deleteCheckPoint == null) {
 						for (final Rail rail : stage.getRails()) {
-							if (Util.getFill(rail).contains(mouseLocation.toPoint2D())) {
+							if (Util.getShape(rail, true).contains(mouseLocation.toPoint2D())) {
 								deleteRail = rail;
 								break;
 							}
@@ -343,7 +343,7 @@ public class Editor {
 						if (point1.distance(mouseLocation) < minDistance) {
 							temporaryCheckPoint.location = point1;
 							temporaryCheckPoint.angle = rail.angle
-									+ (Util.getFill(rail).contains(mouseLocation.toPoint2D()) ? Math.PI : 0);
+									+ (Util.getShape(rail, true).contains(mouseLocation.toPoint2D()) ? Math.PI : 0);
 							minDistance = point1.distance(mouseLocation);
 						}
 						final Point point2 = Util.getPoint2(rail);
@@ -351,7 +351,7 @@ public class Editor {
 							temporaryCheckPoint.location = point2;
 							temporaryCheckPoint.angle = rail.angle
 									+ (rail.isReverse ? -rail.type.getAngle() : rail.type.getAngle())
-									+ (Util.getFill(rail).contains(mouseLocation.toPoint2D()) ? 0 : Math.PI);
+									+ (Util.getShape(rail, true).contains(mouseLocation.toPoint2D()) ? 0 : Math.PI);
 							minDistance = point2.distance(mouseLocation);
 						}
 					}

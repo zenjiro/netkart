@@ -1,8 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0-rc" class="java.beans.XMLDecoder"> 
+<java version="1.5.0_11" class="java.beans.XMLDecoder"> 
  <object class="Stage"> 
   <void property="author"> 
    <string>ぜん</string> 
+  </void> 
+  <void property="checkPoints"> 
+   <void method="add"> 
+    <object class="CheckPoint"> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>400.0</double> 
+       </void> 
+       <void property="y"> 
+        <double>100.0</double> 
+       </void> 
+      </object> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="CheckPoint"> 
+     <void property="angle"> 
+      <double>1.5707963267948966</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>500.0</double> 
+       </void> 
+       <void property="y"> 
+        <double>300.0</double> 
+       </void> 
+      </object> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="CheckPoint"> 
+     <void property="angle"> 
+      <double>6.283185307179586</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>300.0</double> 
+       </void> 
+       <void property="y"> 
+        <double>400.0</double> 
+       </void> 
+      </object> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="CheckPoint"> 
+     <void property="angle"> 
+      <double>4.71238898038469</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>200.0</double> 
+       </void> 
+       <void property="y"> 
+        <double>200.0</double> 
+       </void> 
+      </object> 
+     </void> 
+    </object> 
+   </void> 
   </void> 
   <void property="rails"> 
    <void method="add"> 
