@@ -36,7 +36,7 @@ public class Point {
 	 * @return x座標
 	 */
 	public double getX() {
-		return x;
+		return this.x;
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class Point {
 	 * @return y座標
 	 */
 	public double getY() {
-		return y;
+		return this.y;
 	}
 
 	/**

@@ -1,5 +1,6 @@
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 
 /**
@@ -48,7 +49,7 @@ public class Util {
 	public static String getTitle(final File file, final boolean isModified) {
 		return (isModified ? "*" : "") + (file == null ? "新規ステージ" : file.toString()) + " - NetKartステージエディタ";
 	}
-	
+
 	/**
 	 * @param rail レール
 	 * @return レールの塗りつぶし
@@ -61,6 +62,18 @@ public class Util {
 			transform.scale(1, -1);
 		}
 		return transform.createTransformedShape(rail.type.getFill());
+	}
+
+	/**
+	 * @param checkPoint チェックポイント
+	 * @return チェックポイントの塗りつぶし
+	 */
+	public static Shape getFill(final CheckPoint checkPoint) {
+		final AffineTransform transform = new AffineTransform();
+		transform.translate(checkPoint.location.getX(), checkPoint.location.getY());
+		transform.rotate(checkPoint.angle);
+		return transform.createTransformedShape(new Rectangle2D.Double(-Const.EDITOR_CHECK_POINT_WIDTH / 2,
+				-Const.RAIL_WIDTH / 2, Const.EDITOR_CHECK_POINT_WIDTH, Const.RAIL_WIDTH));
 	}
 
 }

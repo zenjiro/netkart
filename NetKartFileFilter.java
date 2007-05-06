@@ -9,7 +9,7 @@ import javax.swing.filechooser.FileFilter;
 public class NetKartFileFilter extends FileFilter {
 	@Override
 	public boolean accept(final File file) {
-		return file.getName().toLowerCase().endsWith(".netkart");
+		return file.isDirectory() || file.getName().toLowerCase().endsWith(".netkart");
 	}
 
 	@Override

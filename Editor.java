@@ -49,10 +49,6 @@ import javax.swing.WindowConstants;
 /**
  * ステージエディタです。
  * @author zenjiro
- *
- * - スタート位置を作りたい。
- * - ステージの大きさを固定にしたい。
- * - 表示倍率を変更できるようにしたい。
  */
 public class Editor {
 	/**
@@ -65,9 +61,9 @@ public class Editor {
 		 */
 		ADD_RAIL,
 		/**
-		 * レールを削除するモード
+		 * 削除するモード
 		 */
-		DELETE_RAIL,
+		DELETE,
 		/**
 		 * チェックポイントを追加するモード
 		 */
@@ -77,22 +73,27 @@ public class Editor {
 	/**
 	 * モード
 	 */
-	private static Mode mode;
+	static Mode mode;
 
 	/**
 	 * 削除するレール
 	 */
-	private static Rail deleteRail;
+	static Rail deleteRail;
+
+	/**
+	 * 削除するチェックポイント
+	 */
+	static CheckPoint deleteCheckPoint;
 
 	/**
 	 * 編集中のファイル
 	 */
-	private static File file;
+	static File file;
 
 	/**
 	 * 変更されたかどうか
 	 */
-	private static boolean isModified;
+	static boolean isModified;
 
 	/**
 	 * メインメソッドです。
@@ -144,15 +145,14 @@ public class Editor {
 				{
 					int i = 0;
 					for (final CheckPoint checkPoint : stage.getCheckPoints()) {
-						final AffineTransform transform = new AffineTransform();
-						transform.translate(checkPoint.location.getX(), checkPoint.location.getY());
-						transform.rotate(checkPoint.angle);
-						final Shape rectangle = transform.createTransformedShape(new Rectangle2D.Double(-10,
-								-Const.RAIL_WIDTH / 2, 20, Const.RAIL_WIDTH));
+						final Shape rectangle = Util.getFill(checkPoint);
 						g2.setColor(new Color(250, 250, 250));
 						g2.fill(rectangle);
 						g2.setColor(Color.BLACK);
 						g2.draw(rectangle);
+						final AffineTransform transform = new AffineTransform();
+						transform.translate(checkPoint.location.getX(), checkPoint.location.getY());
+						transform.rotate(checkPoint.angle);
 						if (i == 0) {
 							final GeneralPath arrow = new GeneralPath();
 							arrow.moveTo(-20, 0);
@@ -165,13 +165,15 @@ public class Editor {
 							arrow.closePath();
 							g2.fill(transform.createTransformedShape(arrow));
 						}
-						final Shape string = g2.getFont().createGlyphVector(g2.getFontRenderContext(),
-								String.valueOf(i)).getOutline();
-						transform.rotate(-checkPoint.angle);
-						transform
-								.translate(-string.getBounds2D().getWidth() / 2, -string.getBounds2D().getHeight() / 2);
-						transform.scale(1, -1);
-						g2.fill(transform.createTransformedShape(string));
+						if (checkPoint != deleteCheckPoint) {
+							final Shape string = g2.getFont().createGlyphVector(g2.getFontRenderContext(),
+									String.valueOf(i)).getOutline();
+							transform.rotate(-checkPoint.angle);
+							transform.translate(-string.getBounds2D().getWidth() / 2,
+									-string.getBounds2D().getHeight() / 2);
+							transform.scale(1, -1);
+							g2.fill(transform.createTransformedShape(string));
+						}
 						i++;
 					}
 				}
@@ -191,7 +193,7 @@ public class Editor {
 						g2.draw(transform.createTransformedShape(temporaryRail.type.getShape()));
 					}
 					break;
-				case DELETE_RAIL:
+				case DELETE:
 					g2.setStroke(new BasicStroke(2));
 					if (deleteRail != null) {
 						final AffineTransform transform = new AffineTransform();
@@ -204,6 +206,12 @@ public class Editor {
 						g2.fill(transform.createTransformedShape(deleteRail.type.getFill()));
 						g2.setColor(Const.COLOR_DELETE_DRAW);
 						g2.draw(transform.createTransformedShape(deleteRail.type.getShape()));
+					} else if (deleteCheckPoint != null) {
+						final Shape rectangle = Util.getFill(deleteCheckPoint);
+						g2.setColor(Const.COLOR_DELETE_FILL);
+						g2.fill(rectangle);
+						g2.setColor(Const.COLOR_DELETE_DRAW);
+						g2.draw(rectangle);
 					}
 					break;
 				case ADD_CHECK_POINT:
@@ -309,12 +317,21 @@ public class Editor {
 						}
 					}
 					break;
-				case DELETE_RAIL:
+				case DELETE:
+					deleteCheckPoint = null;
 					deleteRail = null;
-					for (final Rail rail : stage.getRails()) {
-						if (Util.getFill(rail).contains(mouseLocation.toPoint2D())) {
-							deleteRail = rail;
+					for (final CheckPoint checkPoint : stage.getCheckPoints()) {
+						if (Util.getFill(checkPoint).contains(mouseLocation.toPoint2D())) {
+							deleteCheckPoint = checkPoint;
 							break;
+						}
+					}
+					if (deleteCheckPoint == null) {
+						for (final Rail rail : stage.getRails()) {
+							if (Util.getFill(rail).contains(mouseLocation.toPoint2D())) {
+								deleteRail = rail;
+								break;
+							}
 						}
 					}
 					break;
@@ -380,10 +397,15 @@ public class Editor {
 						}
 					}
 					break;
-				case DELETE_RAIL:
+				case DELETE:
 					if (deleteRail != null) {
 						stage.getRails().remove(deleteRail);
 						deleteRail = null;
+						isModified = true;
+						frame.setTitle(Util.getTitle(file, isModified));
+					} else if (deleteCheckPoint != null) {
+						stage.getCheckPoints().remove(deleteCheckPoint);
+						deleteCheckPoint = null;
 						isModified = true;
 						frame.setTitle(Util.getTitle(file, isModified));
 					}
@@ -850,7 +872,7 @@ public class Editor {
 		deleteItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				deleteRadio.setSelected(true);
-				mode = Mode.DELETE_RAIL;
+				mode = Mode.DELETE;
 				panel.repaint();
 			}
 		});
@@ -890,7 +912,7 @@ public class Editor {
 	 * @param title ダイアログボックスのタイトルバーに表示する文字列
 	 * @return 次に進んでも良いかどうか
 	 */
-	private static boolean askIfSave(final JFrame frame, final JMenuItem saveItem, final String title) {
+	static boolean askIfSave(final JFrame frame, final JMenuItem saveItem, final String title) {
 		if (isModified) {
 			switch (JOptionPane.showConfirmDialog(frame, "\"" + (file == null ? "新規ステージ" : file)
 					+ "\"は修正されています。保存しますか？", title, JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)) {

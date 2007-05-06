@@ -24,7 +24,7 @@ public class ShortSCurveRail implements RailType {
 
 	public Shape getShape() {
 		final GeneralPath path = new GeneralPath();
-		final float fatness = (float) (Const.RAIL_WIDTH / 4);
+		final float fatness = Const.RAIL_WIDTH / 4;
 		path.moveTo(0, -Const.RAIL_WIDTH / 2);
 		path.curveTo(50 + fatness, -Const.RAIL_WIDTH / 2, 50 + fatness, 50 - Const.RAIL_WIDTH / 2, 100, 50 - Const.RAIL_WIDTH / 2);
 		path.moveTo(100, 50 + Const.RAIL_WIDTH / 2);
@@ -34,7 +34,7 @@ public class ShortSCurveRail implements RailType {
 
 	public Shape getFill() {
 		final GeneralPath path = new GeneralPath();
-		final float fatness = (float) (Const.RAIL_WIDTH / 4);
+		final float fatness = Const.RAIL_WIDTH / 4;
 		path.moveTo(0, -Const.RAIL_WIDTH / 2);
 		path.curveTo(50 + fatness, -Const.RAIL_WIDTH / 2, 50 + fatness, 50 - Const.RAIL_WIDTH / 2, 100, 50 - Const.RAIL_WIDTH / 2);
 		path.lineTo(100, 50 + Const.RAIL_WIDTH / 2);

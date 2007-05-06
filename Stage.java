@@ -94,7 +94,7 @@ public class Stage {
 	 * @return チェックポイントの一覧
 	 */
 	public List<CheckPoint> getCheckPoints() {
-		return checkPoints;
+		return this.checkPoints;
 	}
 
 	/**

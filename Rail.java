@@ -59,6 +59,17 @@ public class Rail {
 		this.isReverse = rail.isReverse;
 	}
 
+	/**
+	 * レールをコピーします。
+	 * @param rail レール
+	 */
+	public void setRail(final Rail rail) {
+		this.type = rail.type;
+		this.location = rail.location;
+		this.angle = rail.angle;
+		this.isReverse = rail.isReverse;
+	}
+	
 	@Override
 	public String toString() {
 		return "(" + this.type.getClass().getName() + ", " + this.location + ", " + this.angle + ", " + this.isReverse

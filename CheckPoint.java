@@ -40,7 +40,7 @@ public class CheckPoint {
 	 * @return 向き
 	 */
 	public double getAngle() {
-		return angle;
+		return this.angle;
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class CheckPoint {
 	 * @return 位置
 	 */
 	public Point getLocation() {
-		return location;
+		return this.location;
 	}
 
 	/**

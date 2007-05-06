@@ -42,4 +42,9 @@ public class Const {
 	 */
 	public static final Font EDITOR_FONT = new Font("Sans", Font.BOLD, 50);
 	
+	/**
+	 * チェックポイントの幅
+	 */
+	public static final int EDITOR_CHECK_POINT_WIDTH = 20;
+	
 }
