@@ -4,17 +4,17 @@ import java.awt.geom.Line2D;
 
 
 /**
- * 直線レールの実装です。
+ * 短い直線レールの実装です。
  * @author zenjiro
  */
-public class StraightRail implements RailType {
+public class ShortStraightRail implements RailType {
 
 	public Point getPoint() {
-		return new Point(100, 0);
+		return new Point(50, 0);
 	}
 
 	public Shape getSkelton() {
-		return new Line2D.Double(0, 0, 100, 0);
+		return new Line2D.Double(0, 0, 50, 0);
 	}
 
 	public double getAngle() {
@@ -24,8 +24,8 @@ public class StraightRail implements RailType {
 	public Shape getShape() {
 		final GeneralPath path = new GeneralPath();
 		path.moveTo(0, -Const.RAIL_WIDTH / 2);
-		path.lineTo(100, -Const.RAIL_WIDTH / 2);
-		path.moveTo(100, Const.RAIL_WIDTH / 2);
+		path.lineTo(50, -Const.RAIL_WIDTH / 2);
+		path.moveTo(50, Const.RAIL_WIDTH / 2);
 		path.lineTo(0, Const.RAIL_WIDTH / 2);
 		return path;
 	}
@@ -33,11 +33,10 @@ public class StraightRail implements RailType {
 	public Shape getFill() {
 		final GeneralPath path = new GeneralPath();
 		path.moveTo(0, -Const.RAIL_WIDTH / 2);
-		path.lineTo(100, -Const.RAIL_WIDTH / 2);
-		path.lineTo(100, Const.RAIL_WIDTH / 2);
+		path.lineTo(50, -Const.RAIL_WIDTH / 2);
+		path.lineTo(50, Const.RAIL_WIDTH / 2);
 		path.lineTo(0, Const.RAIL_WIDTH / 2);
 		path.closePath();
 		return path;
 	}
-
 }

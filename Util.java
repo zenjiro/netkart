@@ -1,19 +1,66 @@
-import java.awt.geom.Point2D;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.io.File;
 
+/**
+ * ユーティリティクラスです。
+ * @author zenjiro
+ */
 public class Util {
 
-	public static Point2D getPoint2(final Rail rail) {
-		return new Point2D.Double(rail.location.getX() + rail.type.getPoint().distance(0, 0)
-				* Math.cos(Math.atan2(rail.type.getPoint().getY(), rail.type.getPoint().getX()) + rail.angle),
-				rail.location.getY() + rail.type.getPoint().distance(0, 0)
-						* Math.sin(Math.atan2(rail.type.getPoint().getY(), rail.type.getPoint().getX()) + rail.angle));
+	/**
+	 * @param rail レール
+	 * @return レールの終点
+	 */
+	public static Point getPoint2(final Rail rail) {
+		return new Point(rail.location.getX()
+				+ rail.type.getPoint().distance(0, 0)
+				* Math.cos(Math.atan2(rail.isReverse ? -rail.type.getPoint().getY() : rail.type.getPoint().getY(),
+						rail.type.getPoint().getX())
+						+ rail.angle), rail.location.getY()
+				+ rail.type.getPoint().distance(0, 0)
+				* Math.sin(Math.atan2(rail.isReverse ? -rail.type.getPoint().getY() : rail.type.getPoint().getY(),
+						rail.type.getPoint().getX())
+						+ rail.angle));
 	}
 
-	public static Point2D getPoint(final RailType type, final double angle) {
-		return new Point2D.Double(type.getPoint().distance(0, 0)
-				* Math.cos(Math.atan2(type.getPoint().getY(), type.getPoint().getX()) + angle), type.getPoint()
-				.distance(0, 0)
-				* Math.sin(Math.atan2(type.getPoint().getY(), type.getPoint().getX()) + angle));
+	/**
+	 * @param type レールの種類
+	 * @param angle レールの角度[ラジアン]
+	 * @param isReverse 裏返すかどうか
+	 * @return レールを原点に指定した角度で置いた場合の終点の座標
+	 */
+	public static Point getPoint(final RailType type, final double angle, final boolean isReverse) {
+		return new Point(type.getPoint().distance(0, 0)
+				* Math.cos(Math.atan2(isReverse ? -type.getPoint().getY() : type.getPoint().getY(), type.getPoint()
+						.getX())
+						+ angle), type.getPoint().distance(0, 0)
+				* Math.sin(Math.atan2(isReverse ? -type.getPoint().getY() : type.getPoint().getY(), type.getPoint()
+						.getX())
+						+ angle));
+	}
+
+	/**
+	 * @param file 編集中のファイル
+	 * @param isModified 変更されたかどうか
+	 * @return タイトルバーに表示する文字列
+	 */
+	public static String getTitle(final File file, final boolean isModified) {
+		return (isModified ? "*" : "") + (file == null ? "新規ステージ" : file.toString()) + " - NetKartステージエディタ";
+	}
+	
+	/**
+	 * @param rail レール
+	 * @return レールの塗りつぶし
+	 */
+	public static Shape getFill(final Rail rail) {
+		final AffineTransform transform = new AffineTransform();
+		transform.translate(rail.location.getX(), rail.location.getY());
+		transform.rotate(rail.angle);
+		if (rail.isReverse) {
+			transform.scale(1, -1);
+		}
+		return transform.createTransformedShape(rail.type.getFill());
 	}
 
 }
