@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_01" class="java.beans.XMLDecoder"> 
+ <object class="Stage"> 
+  <void property="checkPoints"> 
+   <void method="add"> 
+    <object class="CheckPoint"> 
+     <void property="angle"> 
+      <double>-4.71238898038469</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>753.5533905932738</double> 
+       </void> 
+       <void property="y"> 
+        <double>320.7106781186551</double> 
+       </void> 
+      </object> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="CheckPoint"> 
+     <void property="angle"> 
+      <double>-6.283185307179586</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>300.0</double> 
+       </void> 
+       <void property="y"> 
+        <double>800.0</double> 
+       </void> 
+      </object> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="CheckPoint"> 
+     <void property="angle"> 
+      <double>-6.283185307179586</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>200.0000000000001</double> 
+       </void> 
+       <void property="y"> 
+        <double>100.00000000000009</double> 
+       </void> 
+      </object> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="CheckPoint"> 
+     <void property="angle"> 
+      <double>-6.283185307179586</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>412.1320343559644</double> 
+       </void> 
+       <void property="y"> 
+        <double>229.28932188134542</double> 
+       </void> 
+      </object> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="CheckPoint"> 
+     <void property="angle"> 
+      <double>-6.283185307179586</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>624.2640687119286</double> 
+       </void> 
+       <void property="y"> 
+        <double>100.00000000000023</double> 
+       </void> 
+      </object> 
+     </void> 
+    </object> 
+   </void> 
+  </void> 
+  <void property="rails"> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-4.71238898038469</double> 
+     </void> 
+     <void property="location"> 
+      <object id="Point0" class="Point"> 
+       <void property="x"> 
+        <double>100.00000000000001</double> 
+       </void> 
+       <void property="y"> 
+        <double>400.0</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void id="StraightRail0" property="type"/> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-4.71238898038469</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>100.0</double> 
+       </void> 
+       <void property="y"> 
+        <double>500.0</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void property="type"> 
+      <object idref="StraightRail0"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-7.853981633974483</double> 
+     </void> 
+     <void property="location"> 
+      <object idref="Point0"/> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-7.853981633974483</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>100.00000000000004</double> 
+       </void> 
+       <void property="y"> 
+        <double>300.0</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-7.853981633974483</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>100.00000000000007</double> 
+       </void> 
+       <void property="y"> 
+        <double>200.0</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="type"> 
+      <object id="CurveRail0" class="CurveRail"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-7.0685834705770345</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>129.28932188134536</double> 
+       </void> 
+       <void property="y"> 
+        <double>129.28932188134527</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="type"> 
+      <object idref="CurveRail0"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-6.283185307179586</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>200.0000000000001</double> 
+       </void> 
+       <void property="y"> 
+        <double>100.00000000000009</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="type"> 
+      <object idref="CurveRail0"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-5.497787143782138</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>270.71067811865487</double> 
+       </void> 
+       <void property="y"> 
+        <double>129.2893218813454</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-4.71238898038469</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>99.99999999999999</double> 
+       </void> 
+       <void property="y"> 
+        <double>600.0</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void property="type"> 
+      <object id="LongCurveRail0" class="LongCurveRail"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-5.497787143782138</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>158.57864376269052</double> 
+       </void> 
+       <void property="y"> 
+        <double>741.4213562373095</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void property="type"> 
+      <object idref="LongCurveRail0"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-6.283185307179586</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>300.0</double> 
+       </void> 
+       <void property="y"> 
+        <double>800.0</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void property="type"> 
+      <object idref="LongCurveRail0"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-7.0685834705770345</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>441.4213562373095</double> 
+       </void> 
+       <void property="y"> 
+        <double>741.4213562373095</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void id="StraightRail1" property="type"/> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-7.0685834705770345</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>512.1320343559643</double> 
+       </void> 
+       <void property="y"> 
+        <double>670.7106781186548</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void property="type"> 
+      <object idref="StraightRail1"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-7.0685834705770345</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>582.842712474619</double> 
+       </void> 
+       <void property="y"> 
+        <double>600.0</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void property="type"> 
+      <object idref="StraightRail1"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-7.0685834705770345</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>653.5533905932738</double> 
+       </void> 
+       <void property="y"> 
+        <double>529.2893218813452</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void property="type"> 
+      <object idref="StraightRail1"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-5.497787143782138</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>341.4213562373096</double> 
+       </void> 
+       <void property="y"> 
+        <double>200.00000000000017</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void property="type"> 
+      <object id="CurveRail1" class="CurveRail"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-6.283185307179586</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>412.1320343559644</double> 
+       </void> 
+       <void property="y"> 
+        <double>229.28932188134542</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void property="type"> 
+      <object idref="CurveRail1"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-7.0685834705770345</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>482.84271247461913</double> 
+       </void> 
+       <void property="y"> 
+        <double>200.00000000000017</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-7.0685834705770345</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>553.5533905932739</double> 
+       </void> 
+       <void property="y"> 
+        <double>129.28932188134542</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="type"> 
+      <object id="CurveRail2" class="CurveRail"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-6.283185307179586</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>624.2640687119286</double> 
+       </void> 
+       <void property="y"> 
+        <double>100.00000000000023</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="type"> 
+      <object idref="CurveRail2"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-7.0685834705770345</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>724.2640687119285</double> 
+       </void> 
+       <void property="y"> 
+        <double>458.5786437626905</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void property="type"> 
+      <object class="CurveRail"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-5.497787143782138</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>694.9747468305834</double> 
+       </void> 
+       <void property="y"> 
+        <double>129.28932188134553</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="type"> 
+      <object class="LongCurveRail"/> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-7.853981633974483</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>753.5533905932738</double> 
+       </void> 
+       <void property="y"> 
+        <double>387.86796564403573</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+    </object> 
+   </void> 
+   <void method="add"> 
+    <object class="Rail"> 
+     <void property="angle"> 
+      <double>-4.71238898038469</double> 
+     </void> 
+     <void property="location"> 
+      <object class="Point"> 
+       <void property="x"> 
+        <double>753.5533905932738</double> 
+       </void> 
+       <void property="y"> 
+        <double>270.7106781186551</double> 
+       </void> 
+      </object> 
+     </void> 
+     <void property="reverse"> 
+      <boolean>true</boolean> 
+     </void> 
+     <void property="type"> 
+      <object class="ShortStraightRail"/> 
+     </void> 
+    </object> 
+   </void> 
+  </void> 
+ </object> 
+</java> 
