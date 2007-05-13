@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_01" class="java.beans.XMLDecoder"> 
+<java version="1.5.0_11" class="java.beans.XMLDecoder"> 
  <object class="Stage"> 
+  <void property="author"> 
+   <string>ぜん</string> 
+  </void> 
   <void property="checkPoints"> 
    <void method="add"> 
     <object class="CheckPoint"> 
@@ -597,6 +600,9 @@
      </void> 
     </object> 
    </void> 
+  </void> 
+  <void property="title"> 
+   <string>k1</string> 
   </void> 
  </object> 
 </java> 

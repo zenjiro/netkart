@@ -16,7 +16,7 @@ public class Stage {
 	 * チェックポイントの一覧
 	 */
 	private List<CheckPoint> checkPoints;
-	
+
 	/**
 	 * タイトル
 	 */
@@ -102,5 +102,11 @@ public class Stage {
 	 */
 	public void setCheckPoints(List<CheckPoint> checkPoints) {
 		this.checkPoints = checkPoints;
+	}
+
+	@Override
+	public String toString() {
+		return "(" + this.rails.size() + " rails, " + this.checkPoints.size() + " check points, " + this.title + " by "
+				+ this.author + ")";
 	}
 }

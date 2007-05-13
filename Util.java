@@ -73,8 +73,8 @@ public class Util {
 		final AffineTransform transform = new AffineTransform();
 		transform.translate(checkPoint.location.getX(), checkPoint.location.getY());
 		transform.rotate(checkPoint.angle);
-		return transform.createTransformedShape(new Rectangle2D.Double(-Const.EDITOR_CHECK_POINT_WIDTH / 2,
-				-Const.RAIL_WIDTH / 2, Const.EDITOR_CHECK_POINT_WIDTH, Const.RAIL_WIDTH));
+		return transform.createTransformedShape(new Rectangle2D.Double(-Const.CHECK_POINT_WIDTH / 2,
+				-Const.RAIL_WIDTH / 2, Const.CHECK_POINT_WIDTH, Const.RAIL_WIDTH));
 	}
 
 }

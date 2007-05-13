@@ -102,9 +102,10 @@ public class Editor {
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
 	 * @throws ClassNotFoundException 
+	 * @throws FileNotFoundException 
 	 */
 	public static void main(final String[] args) throws ClassNotFoundException, InstantiationException,
-			IllegalAccessException, UnsupportedLookAndFeelException {
+			IllegalAccessException, UnsupportedLookAndFeelException, FileNotFoundException {
 		final Stage stage = new Stage();
 		final Rail temporaryRail = new Rail();
 		final CheckPoint temporaryCheckPoint = new CheckPoint();
@@ -128,7 +129,7 @@ public class Editor {
 				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				g2.translate(0, this.getHeight());
 				g2.scale(1, -1);
-				g2.setFont(Const.EDITOR_FONT);
+				g2.setFont(Const.Editor.EDITOR_FONT);
 				g2.setStroke(new BasicStroke(1.2f));
 				for (final Rail rail : stage.getRails()) {
 					final AffineTransform transform = new AffineTransform();
@@ -187,9 +188,9 @@ public class Editor {
 						if (temporaryRail.isReverse) {
 							transform.scale(1, -1);
 						}
-						g2.setColor(Const.COLOR_ADD_FILL);
+						g2.setColor(Const.Editor.COLOR_ADD_FILL);
 						g2.fill(transform.createTransformedShape(temporaryRail.type.getFill()));
-						g2.setColor(Const.COLOR_ADD_DRAW);
+						g2.setColor(Const.Editor.COLOR_ADD_DRAW);
 						g2.draw(transform.createTransformedShape(temporaryRail.type.getShape()));
 					}
 					break;
@@ -202,15 +203,15 @@ public class Editor {
 						if (deleteRail.isReverse) {
 							transform.scale(1, -1);
 						}
-						g2.setColor(Const.COLOR_DELETE_FILL);
+						g2.setColor(Const.Editor.COLOR_DELETE_FILL);
 						g2.fill(transform.createTransformedShape(deleteRail.type.getFill()));
-						g2.setColor(Const.COLOR_DELETE_DRAW);
+						g2.setColor(Const.Editor.COLOR_DELETE_DRAW);
 						g2.draw(transform.createTransformedShape(deleteRail.type.getShape()));
 					} else if (deleteCheckPoint != null) {
 						final Shape rectangle = Util.getFill(deleteCheckPoint);
-						g2.setColor(Const.COLOR_DELETE_FILL);
+						g2.setColor(Const.Editor.COLOR_DELETE_FILL);
 						g2.fill(rectangle);
-						g2.setColor(Const.COLOR_DELETE_DRAW);
+						g2.setColor(Const.Editor.COLOR_DELETE_DRAW);
 						g2.draw(rectangle);
 					}
 					break;
@@ -222,9 +223,9 @@ public class Editor {
 						transform.rotate(temporaryCheckPoint.angle);
 						final Shape rectangle = transform.createTransformedShape(new Rectangle2D.Double(-10,
 								-Const.RAIL_WIDTH / 2, 20, Const.RAIL_WIDTH));
-						g2.setColor(Const.COLOR_ADD_FILL);
+						g2.setColor(Const.Editor.COLOR_ADD_FILL);
 						g2.fill(rectangle);
-						g2.setColor(Const.COLOR_ADD_DRAW);
+						g2.setColor(Const.Editor.COLOR_ADD_DRAW);
 						g2.draw(rectangle);
 						if (stage.getCheckPoints().isEmpty()) {
 							final GeneralPath arrow = new GeneralPath();
@@ -251,10 +252,10 @@ public class Editor {
 				g2.setStroke(new BasicStroke(1));
 				g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .1f));
 				g2.setColor(Color.BLACK);
-				for (int x = Const.EDITOR_GRID / 2; x < getWidth(); x += Const.EDITOR_GRID) {
+				for (int x = Const.Editor.EDITOR_GRID / 2; x < getWidth(); x += Const.Editor.EDITOR_GRID) {
 					g2.drawLine(x, 0, x, getHeight());
 				}
-				for (int y = Const.EDITOR_GRID / 2; y < getHeight(); y += Const.EDITOR_GRID) {
+				for (int y = Const.Editor.EDITOR_GRID / 2; y < getHeight(); y += Const.Editor.EDITOR_GRID) {
 					g2.drawLine(0, y, getWidth(), y);
 				}
 			}
@@ -271,13 +272,13 @@ public class Editor {
 				case ADD_RAIL:
 					temporaryRail.location = null;
 					if (stage.getRails().isEmpty()) {
-						final Point point = new Point(((int) ((mouseLocation.getX()) / Const.EDITOR_GRID))
-								* Const.EDITOR_GRID,
-								((int) ((mouseLocation.getY() + Const.EDITOR_GRID / 2) / Const.EDITOR_GRID))
-										* Const.EDITOR_GRID);
+						final Point point = new Point(((int) ((mouseLocation.getX()) / Const.Editor.EDITOR_GRID))
+								* Const.Editor.EDITOR_GRID,
+								((int) ((mouseLocation.getY() + Const.Editor.EDITOR_GRID / 2) / Const.Editor.EDITOR_GRID))
+										* Const.Editor.EDITOR_GRID);
 						temporaryRail.location = point;
 					} else {
-						minDistance = Const.EDITOR_GRID;
+						minDistance = Const.Editor.EDITOR_GRID;
 						for (final Rail rail : stage.getRails()) {
 							if (rail.location.distance(mouseLocation.getX(), mouseLocation.getY()) < minDistance) {
 								final Rail rail1 = new Rail(temporaryRail.type, rail.location, rail.angle - Math.PI,
@@ -336,7 +337,7 @@ public class Editor {
 					}
 					break;
 				case ADD_CHECK_POINT:
-					minDistance = Const.EDITOR_GRID;
+					minDistance = Const.Editor.EDITOR_GRID;
 					temporaryCheckPoint.location = null;
 					for (final Rail rail : stage.getRails()) {
 						final Point point1 = rail.location;
@@ -902,6 +903,16 @@ public class Editor {
 			}
 		});
 
+		if (args.length > 0) {
+			file = new File(args[0]);
+			final XMLDecoder decoder = new XMLDecoder(new FileInputStream(file));
+			stage.setStage((Stage) decoder.readObject());
+			decoder.close();
+			titleTextField.setText(stage.getTitle());
+			authorTextField.setText(stage.getAuthor());
+			isModified = false;
+			frame.setTitle(Util.getTitle(file, isModified));
+		}
 		frame.setVisible(true);
 	}
 

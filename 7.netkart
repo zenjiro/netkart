@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0-rc" class="java.beans.XMLDecoder"> 
+<java version="1.5.0_11" class="java.beans.XMLDecoder"> 
  <object class="Stage"> 
   <void property="author"> 
    <string>ぜん</string> 
@@ -518,23 +518,6 @@
      </void> 
     </object> 
    </void> 
-  </void> 
-  <void property="test"> 
-   <object class="CheckPoint"> 
-    <void property="angle"> 
-     <double>2.0</double> 
-    </void> 
-    <void property="location"> 
-     <object class="Point"> 
-      <void property="x"> 
-       <double>2.0</double> 
-      </void> 
-      <void property="y"> 
-       <double>4.0</double> 
-      </void> 
-     </object> 
-    </void> 
-   </object> 
   </void> 
   <void property="title"> 
    <string>テストコース</string> 
