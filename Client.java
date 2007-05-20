@@ -1,9 +1,7 @@
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Calendar;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -25,7 +23,7 @@ public class Client implements Runnable {
 	/**
 	 * 出力ストリーム
 	 */
-	private final OutputStream out;
+	private final PrintWriter out;
 
 	/**
 	 * 識別子
@@ -38,6 +36,21 @@ public class Client implements Runnable {
 	private String stageID;
 
 	/**
+	 * x座標
+	 */
+	private double x;
+
+	/**
+	 * y座標
+	 */
+	private double y;
+
+	/**
+	 * 向き
+	 */
+	private double direction;
+
+	/**
 	 * コンストラクタです。
 	 * @param server サーバ
 	 * @param in 入力ストリーム
@@ -46,38 +59,51 @@ public class Client implements Runnable {
 	public Client(final Server server, final InputStream in, final OutputStream out) {
 		this.server = server;
 		this.in = in;
-		this.out = out;
+		this.out = new PrintWriter(out);
 	}
 
 	public void run() {
 		final Scanner scanner = new Scanner(this.in);
-		final PrintWriter writer = new PrintWriter(this.out);
 		while (scanner.hasNextLine()) {
-			try {
-				final String line = scanner.nextLine();
-				System.out.println("Got " + line);
-				if (line.equals(Const.Network.PUT_PLAYER_NAME)) {
-					this.id = scanner.nextLine();
-					System.out.println("Set id " + this.id);
-				} else if (line.equals(Const.Network.GET_STAGE_LIST)) {
-					for (final Map.Entry<String, Stage> entry : this.server.getStages().entrySet()) {
-						writer.println(Const.Network.PUT_STAGE_ID);
-						writer.println(entry.getKey());
-					}
-				} else if (line.equals(Const.Network.PUT_STAGE_ID)) {
-					this.stageID = scanner.nextLine();
-					System.out.println("Set stage id " + this.stageID);
-				} else if (line.equals(Const.Network.GET_STAGE)) {
-					writer.println(Const.Network.PUT_STAGE_START);
-					this.server.sendStage(this.stageID, writer);
-					writer.println(Const.Network.PUT_STAGE_END);
+			final String line = scanner.nextLine();
+			System.out.println("Got " + line);
+			if (line.equals(Const.Network.PUT_PLAYER_NAME)) {
+				this.id = scanner.nextLine();
+				this.server.clientsTable.put(this.id, this);
+				System.out.println("Set id " + this.id);
+			} else if (line.equals(Const.Network.GET_PLAYER_NAME)) {
+				this.out.println(this.id);
+			} else if (line.equals(Const.Network.GET_PLAYER_LIST)) {
+				for (final Client client : this.server.clientsTable.values()) {
+					this.out.print(client.id + "\t");
 				}
-				writer.flush();
-			} catch (final IOException exception) {
-				exception.printStackTrace();
+				this.out.println();
+			} else if (line.equals(Const.Network.GET_STAGE_LIST)) {
+				for (final String stageName : this.server.stages.keySet()) {
+					this.out.print(stageName + "\t");
+				}
+				this.out.println();
+			} else if (line.equals(Const.Network.PUT_STAGE_ID)) {
+				this.stageID = scanner.nextLine();
+				System.out.println("Set stage id " + this.stageID);
+			} else if (line.equals(Const.Network.GET_STAGE_ID)) {
+				this.out.println(this.stageID);
+			} else if (line.equals(Const.Network.PUT_LOCATION)) {
+				this.x = Integer.parseInt(scanner.nextLine());
+				this.y = Integer.parseInt(scanner.nextLine());
+				this.direction = Integer.parseInt(scanner.nextLine()) / 360.0;
+				System.out.println("Got location " + this.x + ", " + this.y + ", " + this.direction);
+			} else if (line.equals(Const.Network.GET_LOCATION)) {
+				final Client client = this.server.clientsTable.get(scanner.nextLine());
+				this.out.println((int) client.x);
+				this.out.println((int) client.y);
+				this.out.println((int) (client.direction * 360));
+				this.out.flush();
 			}
+			this.out.flush();
 		}
 		System.out.println(this.id + " disconnected on " + Calendar.getInstance().getTime());
+		this.server.clientsTable.remove(this.id);
 	}
 
 }

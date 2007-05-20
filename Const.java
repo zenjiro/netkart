@@ -45,40 +45,65 @@ public class Const {
 	 * @author zenjiro
 	 */
 	public static class Network {
+		
+		/**
+		 * サーバのホスト名
+		 */
+		public static final String SERVER = "zenjiro.dyndns.org";
+		
 		/**
 		 * サーバが接続を待ち受けるポート番号
 		 */
 		public static final int PORT = 60143;
 		
 		/**
-		 * プレイヤの識別子を送る文字列
+		 * クライアントがサーバにプレイヤの識別子を送る文字列
+		 * 続いて「playerName」
 		 */
 		public static final String PUT_PLAYER_NAME = "PUT_PLAYER_NAME";
+
+		/**
+		 * クライアントがサーバにプレイヤの識別子を要求する文字列
+		 * 戻り値は「playerName」
+		 */
+		public static final String GET_PLAYER_NAME = "GET_PLAYER_NAME";
 		
 		/**
 		 * クライアントがサーバにステージの一覧を要求する文字列
+		 * 戻り値は「stageID1    stageID2    ...」
 		 */
 		public static final String GET_STAGE_LIST = "GET_STAGE_LIST";
 
 		/**
-		 * クライアントがサーバにステージを要求する文字列
+		 * クライアントがサーバにステージの識別子を要求する文字列
+		 * 戻り値は「stageID」
 		 */
-		public static final String GET_STAGE = "GET_STAGE";
+		public static final String GET_STAGE_ID = "GET_STAGE_ID";
 		
 		/**
-		 * ステージの識別子を送る文字列
+		 * クライアントがサーバにステージの識別子を送る文字列
+		 * 続いて「stageID」
 		 */
 		public static final String PUT_STAGE_ID = "PUT_STAGE_ID";
 		
 		/**
-		 * サーバがクライアントに1つのステージを送る開始文字列
+		 * クライアントがサーバにプレイヤの位置を送る文字列
+		 * 続いて「x座標」「y座標」「向き」
 		 */
-		public static final String PUT_STAGE_START = "PUT_STAGE_START";
+		public static final String PUT_LOCATION = "PUT_LOCATION";
 		
 		/**
-		 * サーバがクライアントに1つのステージを送る終了文字列
+		 * クライアントがサーバにプレイヤの一覧を要求する文字列
+		 * 戻り値は「playerName1    playerName2    ...」
 		 */
-		public static final String PUT_STAGE_END = "PUT_STAGE_END";
+		public static final String GET_PLAYER_LIST = "GET_PLAYER_LIST";
+		
+		/**
+		 * クライアントがサーバにプレイヤの位置を要求する文字列
+		 * 続いて「playerName」
+		 * 戻り値は「x座標」「y座標」「向き」
+		 */
+		public static final String GET_LOCATION = "GET_LOCATION";
 	}
 	
 	/**
